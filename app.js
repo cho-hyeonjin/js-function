@@ -51,3 +51,12 @@ const abcSum = sum(10, 20, 30);
 // 함수 시그니처를 봤을 때
 // 매개변수가 없는 함수인 것인지, 가변 인자를 사용하는 함수인 것인지
 // 구별할 수 없다는 문제가 있다.
+
+// 가변인자 - 현대적인 방식: rest parameter
+function sumV2(a, b, ...args) {
+  let s = 0;
+
+  for (let i = 0; i < arguments.length; i++) {
+    s = s + arguments[i];
+  }
+}
