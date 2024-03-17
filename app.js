@@ -23,8 +23,8 @@ myFnV2(); // 익명 함수는 변수에 담아서 변수명으로 호출할 수 
 // 2. call()
 // 3. apply()
 myFnV2();
-myFnV2.call();
-myFnV2.apply();
+myFnV2.call(null, 10, 20, 30);
+myFnV2.apply(null, [10, 20, 30]);
 
 // JavaScript에서는 함수에서 매개변수를 1개만 받겠다 정의했음에도
 // 호출 시 매개변수 개수를 다르게 전달해도 오류가 나지 않고 실행 됨.
@@ -60,3 +60,6 @@ function sumV2(a, b, ...args) {
     s = s + arguments[i];
   }
 }
+
+sum.call(null, 10, 20, 30);
+sum.apply(null, [10, 20, 30]);
