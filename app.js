@@ -17,3 +17,16 @@ myFnV2(); // 익명 함수는 변수에 담아서 변수명으로 호출할 수 
 (function () {
   console.log("Execute IIFE!");
 })();
+
+// JavaScript에서 함수를 호출하는 3가지 방법
+// 1. 함수명()
+// 2. call()
+// 3. apply()
+myFnV2();
+myFnV2.call();
+myFnV2.apply();
+
+// JavaScript에서는 함수에서 매개변수를 1개만 받겠다 정의했음에도
+// 호출 시 매개변수 개수를 다르게 전달해도 오류가 나지 않고 실행 됨.
+const result2 = myFn();
+const result3 = myFn(10, 20);
