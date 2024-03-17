@@ -64,3 +64,46 @@ function sumV2(a, b, ...args) {
 const arr = [10, 20, 30, 40]; // 바꾸고 싶으면 이 배열 데이터만 바꿔주면 됨
 sum.call(null, 10, 20, 30, 40); // 코드를 이용하기 때문에 일일이 바꿔줘야 함
 sum.apply(null, arr); // 배열을 이용하기 때문에 밖으로 따로 빼서 배열을 전달해주면 됨. --- 함수 호출 인자값을 외부로부터 공급받아서 훨씬 더 유연하게 사용 가능
+
+// 화살표 함수 --- 이름 없는 익명 함수가 기본값!
+//              그럼 어떻게 호출?
+//              변수에 반드시 담아줘야 하는게 화살표 함수!
+//              그리고 ()와 {} 사이를 =>로 연결해줘야 함
+const sumV3 = (a, b, ...args) => {
+  let s = 0;
+
+  for (let i = 0; i < args.length; i++) {
+    s = s + args[i];
+  }
+};
+
+// const ten = () => {
+//   return 100;
+// } // 코드 블록이 한 줄이고 바디에 return문 하나뿐이라면 중괄호랑 return 키워드 생략 가능
+const ten = () => 100;
+// const ten2 = (x) => 100 + x // 인자가 하나일 땐 () 생략 가능
+// prettier-ignore
+const ten2 = x => 100 + x;
+
+// generator function(생성기 함수) --- 일반적인 함수의 작동 방식과 완전히 다름
+//                                  제너레이터 함수는 최초 호출 시 '실행 준비'를 하고 객체 하나를 리턴하는데,
+//                                  그 객체에는 함수가 실행 준비를 마쳤으니 그 함수를 실행할 도구가 담겨있다.
+function* gen() {
+  // return도 사용할 수 있지만 제너레이터 함수만의 return문은 yield
+  yield 10;
+  yield 20;
+  yield 30;
+}
+
+const g = gen();
+
+// 호출도 next로 해야함
+g.next();
+g.next();
+g.next();
+
+// 함수의 사용자와 ping-pong하듯 사용하는 함수가 생성기함수(제너레이터 함수)
+
+// async function (비동기 함수)
+// Promise의 어려운 비동기 코드 구성을 동기적으로 작성할 수 있게 해주는 문법!
+async function myTask() {}
