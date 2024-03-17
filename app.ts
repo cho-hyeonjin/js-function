@@ -1,4 +1,12 @@
-const obj = {
+type MyObject = {
+  name?: string;
+  age: number;
+  getFamilyName: () => string;
+  getLastName: () => string;
+  getJob: () => string;
+};
+
+const obj: MyObject = {
   name: "Hyeon Jin",
   age: 30,
   getFamilyName: function () {
@@ -14,6 +22,11 @@ const obj = {
 
 obj.name;
 obj.age;
+obj.bloodType = "A"; // JS의 동적 바인딩 기능으로 자동 추가됨
+delete obj.name; // delete 하면 삭제됨
+// 이것을 막고 싶을땐?
+// 1. TS라면? type을 설정해준다.
+
 obj.getFamilyName();
 obj.getJob();
 
@@ -46,4 +59,17 @@ const p1 = new Person("FE Developer");
 p1.bloodType;
 p1.bloodType = "C"; // C형이라는 혈액형은 없음 ∴ 방어 코드를 작성해줘야 함
 
-// getter와 setter는 클래스 내부의 값은 보호하면서 외부에서 사용하는 편의성은 그대로 유지시켜 줄 수 있는 문법!!
+// getter와 setter는 클래스 내부의 값은 보호하면서 외부에서 사용하는 편의성은 그대로 유지시켜 줄 수 있는 편리한 문법!!
+
+// 2. JS라면?
+
+const myObj = Object.create(null, {
+  name: {
+    value: "Cho Hyeonjin",
+    writable: true, // false로 하면 read only가 됨
+    configurable: true, // false로 하면 속성 수정 불가
+  },
+});
+
+myObj.name = "하하하";
+// TS에는 Type에서 규정해주면 되지만 JS에는 그런 방식이 불가능하기 떄문에 Object.create로 생성하면서 위와 같이 설정해주어야 함.
